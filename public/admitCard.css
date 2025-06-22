@@ -1,0 +1,35 @@
+
+    body {
+      font-family: Arial, sans-serif;
+      width: 600px;
+      margin: auto;
+      padding: 20px;
+      border: 2px solid #333;
+      background: #f9f9f9;
+    }
+    h2 {
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .info p {
+      margin: 6px 0;
+      font-size: 16px;
+    }
+    .note, .instructions, .footer {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .footer a {
+      color: #007BFF;
+      text-decoration: none;
+      display: block;
+    }
+    .download-btn {
+      margin-top: 30px;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }

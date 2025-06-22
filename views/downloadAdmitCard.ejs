@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ID Card - SMIT</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="/downloadAdmitCard.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+ <script>
+ async function generatePDF() {
+  const { jsPDF } = window.jspdf;
+  const element = document.querySelector('.id-card');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+
+    downloadBtn.style.display = 'none';
+
+  html2canvas(element, { scale: 2 }).then(canvas => {
+    const imgData = canvas.toDataURL('image/png');
+
+    // A4 size in mm
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfWidth = 210;
+    const pdfHeight = 297;
+
+    // image size
+    const imgProps = pdf.getImageProperties(imgData);
+    const imgWidth = pdfWidth - 20;
+    const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+
+    pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+    pdf.save("admit_card.pdf");
+  });
+}
+
+  </script>
+<body>
+
+
+  
+ <% if(cardData) {%>
+
+  <div>
+  <div class="id-card">
+    <h3 class="text-center">SMIT ID CARD</h3>
+    <div class="info">
+      <p><strong>Name:</strong> <%=cardData.name%></p>
+      <p><strong>Father Name:</strong> <%=cardData.fname%></p>
+      <p><strong>CNIC:</strong>  <%=cardData.cnic%></p>
+      <p><strong>Course:</strong>  <%=cardData.course%></p>
+    
+    </div>
+    <div class="note mt-3">
+      <p>This card is for SMIT premises only.<br>If found please return to SMIT</p>
+    </div>
+    <div class="instructions mt-3">
+      <h6>Instructions:</h6>
+      <ul>
+        <li><a href="https://maps.app.goo.gl/4ZACPhfZDnaG62bz5" target="_blank">Bahadurabad Campus</a></li>
+        <li><a href="https://maps.app.goo.gl/QLkJ9BjyejUavxLU7" target="_blank">Gulshan Campus</a></li>
+        <li><a href="https://maps.app.goo.gl/CLNp4cFM8GTh3PSVA" target="_blank">Malir Campus</a></li>
+        <li><a href="https://maps.app.goo.gl/KpQrL9YDBMchC41t8" target="_blank">Numaish Campus</a></li>
+        <li>SMIT Paposh Campus: VT-14/A, Nazimabad Opp. UBL Bank, Paposh Nagar, Karachi</li>
+      </ul>
+    </div>
+    <div class="footer mt-3">
+      <p>Note: Please select your class time slot carefully; it will not change later.</p>
+      <p>Fill the form: <a href="https://forms.gle/5Tx1CJnWLUUDpVgFA" target="_blank">Google Form</a></p>
+      <p>Donate us: <a href="https://www.saylaniwelfare.com" target="_blank">Saylani Welfare</a></p>
+        <button  id="downloadBtn" style="border: none;" onclick="generatePDF()">Download PDF</button>
+    </div>
+  </div>
+   
+  </div>
+
+  <%} else{%>
+      <div class="alert alert-warning text-center mt-5">
+    No record found for this CNIC.
+  </div>
+    <%}%>
+
+ 
+
+ 
+</body>
+</html>

@@ -1,0 +1,38 @@
+body {
+  background-color: #f8f9fa;
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+}
+
+.id-card {
+  width: 500px;
+  margin: auto;
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  border: 2px solid #007bff;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.id-card h3 {
+  color: #007bff;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.id-card p {
+  margin-bottom: 10px;
+}
+
+.instructions ul {
+  padding-left: 18px;
+}
+
+.instructions li {
+  margin-bottom: 6px;
+}
+
+.footer a {
+  color: #007bff;
+  text-decoration: underline;
+}
